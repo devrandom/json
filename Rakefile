@@ -154,7 +154,7 @@ task :doc => [ :version, EXT_PARSER_SRC ] do
   system "rdoc -o doc -m doc-main.txt doc-main.txt lib/json.rb #{FileList['lib/json/**/*.rb']} #{EXT_PARSER_SRC} #{EXT_GENERATOR_SRC}"
 end
 
-if defined?(Gem) and defined?(Rake::GemPackageTask) and defined?(Rake::ExtensionTask)
+if defined?(Gem) and defined?(Rake::GemPackageTask)
   spec_pure = Gem::Specification.new do |s|
     s.name = 'json_pure'
     s.version = PKG_VERSION
@@ -184,7 +184,9 @@ if defined?(Gem) and defined?(Rake::GemPackageTask) and defined?(Rake::Extension
       pkg.need_tar = true
       pkg.package_files += PKG_FILES
   end
+end
 
+if defined?(Gem) and defined?(Rake::GemPackageTask) and defined?(Rake::ExtensionTask)
   spec_ext = Gem::Specification.new do |s|
     s.name = 'json'
     s.version = PKG_VERSION
